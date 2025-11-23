@@ -61,13 +61,13 @@ body{
   <button onclick="
     playerGame(&#39;paper&#39;);
     " class="move-button">
-    <img src="./ROCK PAPER SCISSOR_files/paper-emoji.png" class="move-icon"></button>
+    <img src="paper-emoji.png" class="move-icon"></button>
 
 
   <button onclick="
   playerGame(&#39;scissors&#39;);
   " class="move-button">
-  <img src="./ROCK PAPER SCISSOR_files/scissors-emoji.png" class="move-icon"></button>
+  <img src="scissors-emoji.png" class="move-icon"></button>
 
   <p class="js-result result">You win</p>
   <p class="js-moves">
@@ -152,8 +152,8 @@ const computerMove =  pickcomputerMove();
 
           document.querySelector('.js-moves')
           .innerHTML = ` You
-    <img src="/images/${playerMove}-emoji.png" class="move-icon">
-    <img src="/images/${computerMove}-emoji.png" class="move-icon">
+    <img src="${playerMove}-emoji.png" class="move-icon">
+    <img src="${computerMove}-emoji.png" class="move-icon">
     Computer`; }  
 
       function updateScoreElement(){
