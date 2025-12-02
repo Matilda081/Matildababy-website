@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://127.0.0.1:5500/To-do-app.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Todo App</title>
+<link rel="stylesheet" href="./Todo App_files/all.min.css">
+<style>
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, springGreen, aquamarine, mediumAquamarine, steelBlue);
+  margin: 0;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#pending-count {
+  margin-left: 20px;
+}
+
+.container{
+   background-color: white;
+   padding: 20px;
+   border-radius: 5px;
+   height: 400px;
+   overflow-y: auto;
+   }
+    
+   #todo-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f6f6f6;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+   }
+
+   #add-btn {
+    flex: 0;
+    padding: 8px 16px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(128, 0, 128);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+   }
+
+   .input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+   }
+
+   #todo-input {
+    flex: 2;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 6px;
+   }
+
+   #todo-date {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+   }
+
+   #add-btn:hover {
+    background-color: rgb(0, 98, 204);
+    transform: scale(1.1);
+   }
+
+   .task-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+   }
+
+   .task-date {
+    margin-left: 15px;
+    font-size: 14px;
+    }
+   
+
+    .actions{
+      display: flex;
+      gap: 10px;
+    }
+
+    /*.actions button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }*/
+     
+
+   .actions button {
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      padding: 0;
+    }
+
+    #current-time {
+      font-weight: bold;
+      font-size: 14px;
+      margin-left: 5px;
+    }
+
+    #clear-all {
+      padding: 8px 12px;
+      border: none;
+      background-color: rgb(128, 0, 128);
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #clear-all:hover {
+      background-color: rgb(255, 0, 0);
+    }
+
+    .check {
+      background-color: rgb(52, 167, 52);
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 15px;
+    }
+
+
+    .check:hover {
+      background-color: rgb(135, 158, 250);
+      transform: scale(1);
+    }
+
+    .edit {
+      background-color: rgb(255, 165, 0);
+      color: white;
+    }
+
+    .edit:hover {
+      background-color: rgb(229, 148, 0);
+      transform: scale(1);
+    }
+
+    .delete {
+      background-color: rgb(220, 53, 69);
+      color: white;
+    }
+
+    .delete:hover {
+      background-color: rgb(200, 35, 51);
+      transform: scale(1);
+    }
+
+    .button i {
+      pointer-events: none;
+    }
+
+    #add-btn i {
+      margin-right: 6px;
+      font-size: 16px;
+      vertical-align: middle;
+    }
+    
+
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h3>Todo App</h3>
+<div class="input-section">
+  <input id="todo-input" type="text" placeholder="Enter task">
+  <input id="todo-date" type="date">
+  <button id="add-btn"><i class="fa-solid fa-plus"></i></button>
+</div>
+<ul id="todo-list"><li class=""><div class="task-info">
+       <span>Write Exams</span>
+         <small class="task-date">2025-12-09</small>
+        </div>
+       <div class="actions">
+       <button class="check" data-id="0"><i class="fa-solid fa-check"></i></button>
+        <button class="edit" data-id="0"><i class="fa-solid fa-pen"></i></button>
+        <button class="delete" data-id="0"><i class="fa-solid fa-trash"></i></button>
+        </div>
+         </li><li class=""><div class="task-info">
+       <span>Go to the gym</span>
+         <small class="task-date">2025-12-13</small>
+        </div>
+       <div class="actions">
+       <button class="check" data-id="1"><i class="fa-solid fa-check"></i></button>
+        <button class="edit" data-id="1"><i class="fa-solid fa-pen"></i></button>
+        <button class="delete" data-id="1"><i class="fa-solid fa-trash"></i></button>
+        </div>
+         </li><li class=""><div class="task-info">
+       <span>Buy groceries</span>
+         <small class="task-date">2025-12-17</small>
+        </div>
+       <div class="actions">
+       <button class="check" data-id="2"><i class="fa-solid fa-check"></i></button>
+        <button class="edit" data-id="2"><i class="fa-solid fa-pen"></i></button>
+        <button class="delete" data-id="2"><i class="fa-solid fa-trash"></i></button>
+        </div>
+         </li><li class=""><div class="task-info">
+       <span>Plait my hair</span>
+         <small class="task-date">2025-12-20</small>
+        </div>
+       <div class="actions">
+       <button class="check" data-id="3"><i class="fa-solid fa-check"></i></button>
+        <button class="edit" data-id="3"><i class="fa-solid fa-pen"></i></button>
+        <button class="delete" data-id="3"><i class="fa-solid fa-trash"></i></button>
+        </div>
+         </li></ul>
+<footer>
+  <div class="footer-left">
+  <button id="clear-all">Clear All</button>
+  <span id="current-time">10:24</span>
+</div>
+  <p id="pending-count">You have 4 pending tasks</p>
+</footer>
+</div>
+ 
+ 
+ <script>
+  console.log("Javascript is working!");
+  let todos = [];
+  const input = document.getElementById("todo-input");
+  const dateInput = document.getElementById("todo-date");
+  const addBtn = document.getElementById("add-btn");
+  const list = document.getElementById("todo-list");
+  const clearAllBtn = document.getElementById("clear-all");
+  const pendingCount = document.getElementById("pending-count");
+  const currentTimeInput = document.getElementById("current-time");
+
+  //-----localStorage functions-----
+  function saveToLocalStorage() {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+  
+  function loadFromLocalStorage() {
+    const storedTodos = localStorage.getItem("todos");
+    if (storedTodos) {
+      todos = JSON.parse(storedTodos);
+      renderTodos();
+    }
+  }
+
+  //----function to update current time in the footer---
+  function updateCurrentTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    currentTimeInput.textContent = `${hours}:${minutes}`;
+  }
+  updateCurrentTime();
+  setInterval(updateCurrentTime, 60000);
+
+  //--------CREATE------
+  addBtn.addEventListener("click", function () {
+    let task = input.value.trim();
+    let date = dateInput.value;
+   if (task === "") {
+    alert("Please enter a task");
+    return;
+   }
+   let taskDate = date ? date : "No date selected";
+   todos.push({text: task, complete: false, date: taskDate}); //Add to array
+   saveToLocalStorage();
+   
+   input.value = ""; //clear input
+   dateInput.value = "";
+   renderTodos(); //update UI(show on page)
+  });
+
+  //---------READ (Display tasks)------
+  function renderTodos() {
+    list.innerHTML = ""; // clear list first
+    todos.forEach((todo, index) => {
+      let li = document.createElement("li");
+      li.className = todo.complete ? "completed" : "";
+      
+       li.innerHTML = `<div class="task-info">
+       <span>${todo.text}</span>
+         <small class="task-date">${todo.date}</small>
+        </div>
+       <div class="actions">
+       <button class="check" data-id="${index}"><i class="fa-solid fa-check"></i></button>
+        <button class="edit" data-id="${index}"><i class="fa-solid fa-pen"></i></button>
+        <button class="delete" data-id="${index}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+         `;
+        list.appendChild(li);
+    });
+    const pending = todos.filter(t => !t.complete).length;
+    pendingCount.textContent =`You have ${pending} pending task${pending !== 1 ?'s' : ''}`;
+    attachEventListeners();
+  }
+
+  //----ATTACH BUTTON EVENTS-----
+  function attachEventListeners() {
+    document.querySelectorAll(".check").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const index = this.dataset.id;
+        todos[index].complete = !todos[index].complete;
+        saveToLocalStorage();
+        renderTodos();
+      });
+    });
+
+    //-----UPDATE(edit)-----
+    /*document.querySelectorAll(".edit").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const index = this.dataset.id;
+        const newText = prompt("Edit your task:", todos[index].text);
+        if (newText !== null && newText.trim()  !== "")
+      {todos[index].text = newText.trim();
+        saveToLocalStorage();
+        renderTodos();
+
+      }
+      });
+    });*/
+
+         //-----Inline editting-----
+         document.querySelectorAll(".edit").forEach(btn => {
+          btn.addEventListener("click", function() {
+            const index = this.dataset.id;
+            const li = this.closest("li")
+            const span = li.querySelector("span")
+            //----create input box---
+            const input = document.createElement("input");
+            input.type = "text";
+            input.value = todos[index].text;
+            input.className = "edit-input";
+            //----replace text with input---
+            span.replaceWith(input)
+            input.focus();
+            //function to save edit
+            function saveEdit() {
+              const newValue = input.value.trim();
+              if (newValue !== "") {
+                todos[index].text = newValue;
+                saveToLocalStorage();
+                renderTodos();
+             } else {
+              renderTodos();//return original if empty
+             }
+            }
+            //-----save when user presses enter---
+            input.addEventListener("keypress", function (e) {
+              if (e.key === "Enter") {
+                saveEdit();
+              }
+            });
+            //----save when user leaves input----
+            input.addEventListener("blur", saveEdit);
+          });
+         });
+
+    //----DELETE----
+    document.querySelectorAll(".delete").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const index = this.dataset.id;
+        todos.splice(index, 1);
+        saveToLocalStorage();
+        renderTodos();
+      });
+    });
+  }
+
+  //----CLEAR ALL----
+  clearAllBtn.addEventListener("click", function() {
+    if (todos.length === 0) return;
+    if (confirm ("Are you sure you want to clear all tasks?")) {
+      todos = [];
+      saveToLocalStorage();
+      renderTodos();
+    }
+  });
+
+  //------load tasks on page load -----
+  loadFromLocalStorage();
+
+   </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
